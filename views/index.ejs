@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero card">
+        <h1 class="hero__title">DevOps Node App 🚀</h1>
+        <p class="hero__subtitle">
+          Add a message below. Everything stays in memory — perfect for demos and Elastic Beanstalk smoke tests.
+        </p>
+      </header>
+
+      <section class="card form-card" aria-labelledby="form-heading">
+        <h2 id="form-heading" class="section-title">New message</h2>
+        <form class="message-form" method="post" action="/message">
+          <label class="sr-only" for="message-text">Message</label>
+          <textarea
+            id="message-text"
+            name="text"
+            rows="3"
+            maxlength="2000"
+            placeholder="Type your message…"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn--primary">Add message</button>
+        </form>
+      </section>
+
+      <section class="messages-section" aria-labelledby="messages-heading">
+        <h2 id="messages-heading" class="section-title section-title--loose">Messages</h2>
+        <% if (messages.length === 0) { %>
+          <div class="card empty-state">
+            <p>No messages yet. Be the first to post one.</p>
+          </div>
+        <% } else { %>
+          <ul class="message-list">
+            <% messages.forEach(function (m) { %>
+              <li class="card message-card">
+                <p class="message-card__text"><%= m.text %></p>
+                <time class="message-card__time" datetime="<%= m.createdAt %>">
+                  <%= new Date(m.createdAt).toLocaleString(undefined, {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  }) %>
+                </time>
+              </li>
+            <% }); %>
+          </ul>
+        <% } %>
+      </section>
+
+      <footer class="footer">
+        <p>Node.js · Express · EJS · In-memory store</p>
+      </footer>
+    </div>
+  </body>
+</html>

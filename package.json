@@ -1,0 +1,18 @@
+{
+  "name": "devops-node-app",
+  "version": "1.0.0",
+  "description": "Simple Express + EJS app for DevOps demos and AWS Elastic Beanstalk",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["express", "ejs", "devops"],
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
