@@ -1,33 +1,17 @@
 version: 0.2
 
-# AWS CodeBuild ke liye buildspec file
-# Is file se define hota hai: install, build, aur output artifacts
-
 phases:
   install:
-    # Runtime environment set karein (Node.js 18+ app ke liye)
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Installing project dependencies..."
-      # Clean install (package-lock.json se exact versions)
-      - npm ci
+      - npm install
 
   build:
     commands:
-      - echo "Build phase started on $(date)"
-      # Agar test script maujood ho to run karein, warna skip
-      - npm run test --if-present
-      # Optional: Agar future mein build script add ho to yeh bhi run ho jayegi
-      - npm run build --if-present
-
-  post_build:
-    commands:
-      - echo "Build completed on $(date)"
+      - echo "Building project..."
+      - npm run build
 
 artifacts:
-  # Build ke baad kaunsa output export karna hai
   files:
     - '**/*'
-  # Folder structure preserve rahegi (false ka matlab flatten nahi karna)
-  discard-paths: no
